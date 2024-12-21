@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { format } from "date-fns";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AddQuery = () => {
   const { user } = useContext(AuthContext);
   //   console.log(user);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const productName = form.productName.value;
@@ -34,26 +36,43 @@ const AddQuery = () => {
       userImage,
     };
 
-    fetch("http://localhost:5000/add-query", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newQuery),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (insertedId) {
-          // Check if insertedId is present in the response
-          toast.success("Query added successfully!");
-        } else {
-          toast.error("Failed to add query.");
-        }
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error:", error);
-        alert("Failed to add query.");
+    // fetch("http://localhost:5000/add-query", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(newQuery),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (insertedId) {
+    //       // Check if insertedId is present in the response
+    //       toast.success("Query added successfully!");
+    //     } else {
+    //       toast.error("Failed to add query.");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // Handle error
+    //     console.error("Error:", error);
+    //     alert("Failed to add query.");
+    //   });
+
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/add-query`, newQuery);
+
+      // Show success toast and navigate after the post is successful
+      //   toast.success("Data added successfully");
+      Swal.fire({
+        title: "Success!",
+        text: "Data added successfully",
+        icon: "success",
+        confirmButtonText: "Ok",
       });
+      //   navigate("/my-posted-jobs");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message || "Failed to add data");
+    }
   };
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
