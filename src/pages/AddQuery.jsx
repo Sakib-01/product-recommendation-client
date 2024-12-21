@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { format } from "date-fns";
+import toast from "react-hot-toast";
 
 const AddQuery = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const AddQuery = () => {
 
     const currentDateTime = format(new Date(), "yyyy-MM-dd HH:mm:ss");
     const recommendationCount = 0;
-    console.log(
+    const newQuery = {
       productName,
       productBrand,
       productImageUrl,
@@ -30,8 +31,29 @@ const AddQuery = () => {
       recommendationCount,
       userName,
       userEmail,
-      userImage
-    );
+      userImage,
+    };
+
+    fetch("http://localhost:5000/add-query", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newQuery),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (insertedId) {
+          // Check if insertedId is present in the response
+          toast.success("Query added successfully!");
+        } else {
+          toast.error("Failed to add query.");
+        }
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error:", error);
+        alert("Failed to add query.");
+      });
   };
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
