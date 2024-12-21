@@ -23,19 +23,25 @@ const TabCategory = () => {
           products in each category.
         </p>
 
-        <div className="flex items-center justify-center">
-          <TabList>
+        <div className="flex items-center justify-center mb-6">
+          <TabList className="flex items-center justify-center space-x-6 p-4 bg-gray-100 rounded-xl shadow-md">
             {uniqueBrands.map((brand, index) => (
-              <Tab key={index}>{brand}</Tab>
+              <Tab
+                key={index}
+                className="px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 ease-in-out rounded-lg cursor-pointer hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {brand}
+              </Tab>
             ))}
           </TabList>
         </div>
 
         {uniqueBrands.map((brand, index) => (
           <TabPanel key={index}>
-            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 ">
               {queries
                 .filter((query) => query.productBrand === brand)
+                .slice(0, 6)
                 .map((query) => (
                   <ProductCard key={query._id} query={query}></ProductCard>
                 ))}
