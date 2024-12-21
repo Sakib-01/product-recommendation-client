@@ -6,6 +6,8 @@ import SignIn from "../pages/Authentication/SignIn";
 import Register from "../pages/Authentication/Register";
 import ErrorPage from "../pages/ErrorPage";
 import AddQuery from "../pages/AddQuery";
+import Queries from "../pages/Queries";
+import QueryDetails from "../pages/QueryDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/queries",
+        element: <Queries />,
+      },
+      {
+        path: "/queryDetails/:id",
+        element: <QueryDetails />,
       },
       {
         path: "/addQuery",

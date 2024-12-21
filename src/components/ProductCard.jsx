@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const ProductCard = ({ query }) => {
+  const location = useLocation();
   const {
     productName,
     productBrand,
