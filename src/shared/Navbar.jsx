@@ -31,10 +31,10 @@ const Navbar = () => {
 
   return (
     <div className="absolute top-0 left-0 w-full z-20 bg-base-100 shadow-lg">
-      <div className="lg:w-11/12 mx-auto flex justify-between items-center py-4 px-6 lg:px-32">
+      <div className="lg:w-11/12 mx-auto flex justify-between items-center py-4  ">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <h1 className="text-primary font-bold text-3xl">Ontoz</h1>
+          <h1 className="text-primary font-bold text-3xl ">Ontoz</h1>
         </Link>
 
         {/* Desktop Navigation */}
