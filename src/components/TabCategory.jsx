@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import ProductCard from "./ProductCard";
+import { Link } from "react-router-dom";
 
 const TabCategory = () => {
   const [queries, setQueries] = useState([]);
@@ -49,6 +50,10 @@ const TabCategory = () => {
           </TabPanel>
         ))}
       </div>
+      <Link className="flex justify-start ml-10" to="/queries">
+        {" "}
+        <button className=" btn btn-secondary">Show more..</button>
+      </Link>
     </Tabs>
   );
 };
