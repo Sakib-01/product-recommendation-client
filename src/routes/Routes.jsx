@@ -5,6 +5,7 @@ import Signup from "../pages/Signup";
 import SignIn from "../pages/Authentication/SignIn";
 import Register from "../pages/Authentication/Register";
 import ErrorPage from "../pages/ErrorPage";
+import AddQuery from "../pages/AddQuery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/addQuery",
+        element: <AddQuery />,
       },
       {
         path: "/signup",
