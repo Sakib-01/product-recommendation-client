@@ -8,7 +8,12 @@ const Queries = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/all-queries`)
       .then((res) => res.json())
-      .then((data) => setQueries(data));
+      .then((data) => {
+        const sortedData = data.sort(
+          (a, b) => new Date(b.currentDateTime) - new Date(a.currentDateTime)
+        );
+        setQueries(sortedData);
+      });
   }, []);
   return (
     <div className="pt-10">
