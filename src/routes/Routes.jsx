@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AddQuery from "../pages/AddQuery";
 import Queries from "../pages/Queries";
 import QueryDetails from "../pages/QueryDetails";
+import MyQuery from "../pages/MyQuery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/addQuery",
         element: <AddQuery />,
+      },
+      {
+        path: "/myQuery",
+        element: <MyQuery />,
       },
       {
         path: "/signup",

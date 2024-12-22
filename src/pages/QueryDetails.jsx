@@ -120,9 +120,9 @@ const QueryDetails = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row pt-10">
       <div className="flex-1 flex justify-center items-center">
-        <div className="flex flex-col">
+        <div className="flex flex-col pt-5">
           <div className="mt-4 flex justify-center items-center">
             <img className="w-60 mx-auto" src={query.productImageUrl} alt="" />
             <div>
