@@ -5,6 +5,10 @@ import queryLottie from "../assets/Lottie/query.json";
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { GrView } from "react-icons/gr";
+import { FaEdit, FaRegComments } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
@@ -24,7 +28,10 @@ const MyQuery = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/my-query/${user?.email}`
       );
-      setQuery(data);
+      const sortedData = data.sort(
+        (a, b) => new Date(b.currentDateTime) - new Date(a.currentDateTime)
+      );
+      setQuery(sortedData);
     } catch (err) {
       console.error(err);
       setError("Failed to fetch queries. Please try again later.");
@@ -33,6 +40,22 @@ const MyQuery = () => {
     }
   };
   console.log(query);
+
+  //   handle delete functionality
+
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/deleteQuery/${id}`
+      );
+      console.log(data);
+      toast.success("Data Deleted Successfully!!!");
+      fetchQueryData();
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
   return (
     <div className="container mx-auto flex flex-col">
       {/* Hero Section */}
@@ -95,15 +118,28 @@ const MyQuery = () => {
 
               {/* Recommendation Count */}
               <div className="text-center">
-                <p className="text-gray-600 text-sm">💬</p>
+                <p className="text-gray-600 text-sm">
+                  <FaRegComments />
+                </p>
                 <p className="font-bold">{q.recommendationCount}</p>
               </div>
 
               {/* Action Buttons */}
               <div className="flex flex-col md:flex-row space-x-4 ml-6">
-                <button className="btn btn-primary btn-sm">View</button>
-                <button className="btn btn-warning btn-sm">Update</button>
-                <button className="btn btn-error btn-sm">Delete</button>
+                <Link to={`/queryDetails/${q._id}`}>
+                  <button className="btn btn-primary btn-sm">
+                    <GrView />
+                  </button>
+                </Link>
+                <button className="btn btn-warning btn-sm">
+                  <FaEdit />
+                </button>
+                <button
+                  onClick={() => handleDelete(q._id)}
+                  className="btn btn-error btn-sm"
+                >
+                  <MdDeleteOutline />
+                </button>
               </div>
             </div>
           </div>
