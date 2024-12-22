@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { GrView } from "react-icons/gr";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
@@ -33,6 +35,47 @@ const MyRecommendation = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to undo this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axios.delete(
+            `${import.meta.env.VITE_API_URL}/deleteRecommendation/${id}`
+          );
+          console.log(data);
+
+          // Show success message
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your data has been deleted.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
+
+          fetchRecommendations();
+        } catch (err) {
+          console.error(err);
+
+          // Show error
+          Swal.fire({
+            title: "Error!",
+            text: err.message,
+            icon: "error",
+            confirmButtonColor: "#d33",
+          });
+        }
+      }
+    });
   };
 
   return (
@@ -110,16 +153,6 @@ const MyRecommendation = () => {
                     </div>
                     {/* Action Buttons */}
                     <div className="flex flex-col items-end flex-grow space-y-3 ml-6">
-                      <Link to={`/queryDetails/${rec._id}`}>
-                        <button className="btn btn-primary btn-sm">
-                          <GrView />
-                        </button>
-                      </Link>
-                      <Link to={`/updateQuery/${rec._id}`}>
-                        <button className="btn btn-warning btn-sm">
-                          <FaEdit />
-                        </button>
-                      </Link>
                       <button
                         onClick={() => handleDelete(rec._id)}
                         className="btn btn-error btn-sm"

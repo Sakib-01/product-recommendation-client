@@ -47,6 +47,7 @@ const QueryDetails = () => {
     setQuery(data);
   };
 
+  console.log(recommendations);
   // Handle if no query is found
   if (!recommendations) return <div>No Recommendations found</div>;
   if (!query) return <div>No query found</div>;
@@ -154,6 +155,7 @@ const QueryDetails = () => {
                     <tr>
                       <th></th>
                       <th>Recommendation Reason</th>
+                      <th>Recommendar Details</th>
                     </tr>
                   </thead>
                   {recommendations.map((recommendation) => (
@@ -181,6 +183,12 @@ const QueryDetails = () => {
                           </div>
                         </td>
                         <td>{recommendation.recommendationReason}</td>
+                        <td>
+                          <span className="font-bold">Name : </span>{" "}
+                          {recommendation.recomenderName}
+                          <br />
+                          {recommendation.recomenderEmail}
+                        </td>
                       </tr>
                     </tbody>
                   ))}
