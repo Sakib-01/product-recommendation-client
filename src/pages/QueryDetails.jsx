@@ -66,6 +66,7 @@ const QueryDetails = () => {
     const queryId = query?._id || null; // Ensure a fallback if `query` is undefined
     const queryTitle = query?.queryTitle || "No Query Title";
     const productName = query?.productName || "No Product Name";
+    const productImageUrl = query?.productImageUrl || "No Product Image";
 
     const recomenderEmail = user?.email || "No Email";
     const recomenderName = user?.displayName || "No Name";
@@ -85,6 +86,7 @@ const QueryDetails = () => {
       queryId,
       queryTitle,
       productName,
+      productImageUrl,
       recomenderEmail,
       recomenderName,
       userEmail,

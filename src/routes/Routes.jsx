@@ -10,6 +10,7 @@ import Queries from "../pages/Queries";
 import QueryDetails from "../pages/QueryDetails";
 import MyQuery from "../pages/MyQuery";
 import UpdateQuery from "../pages/UpdateQuery";
+import MyRecommendation from "../pages/MyRecommendation";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/myQuery",
         element: <MyQuery />,
+      },
+      {
+        path: "/myRecomendation/",
+        element: <MyRecommendation />,
       },
       {
         path: "/signup",
