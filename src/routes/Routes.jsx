@@ -9,6 +9,7 @@ import AddQuery from "../pages/AddQuery";
 import Queries from "../pages/Queries";
 import QueryDetails from "../pages/QueryDetails";
 import MyQuery from "../pages/MyQuery";
+import UpdateQuery from "../pages/UpdateQuery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/addQuery",
         element: <AddQuery />,
+      },
+      {
+        path: "/updateQuery/:id",
+        element: <UpdateQuery />,
       },
       {
         path: "/myQuery",

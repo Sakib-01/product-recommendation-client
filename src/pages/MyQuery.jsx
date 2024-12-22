@@ -131,9 +131,11 @@ const MyQuery = () => {
                     <GrView />
                   </button>
                 </Link>
-                <button className="btn btn-warning btn-sm">
-                  <FaEdit />
-                </button>
+                <Link to={`/updateQuery/${q._id}`}>
+                  <button className="btn btn-warning btn-sm">
+                    <FaEdit />
+                  </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(q._id)}
                   className="btn btn-error btn-sm"
