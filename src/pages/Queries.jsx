@@ -16,19 +16,19 @@ const Queries = () => {
       });
   }, []);
   return (
-    <div className="pt-10">
-      <h2 className="text-3xl  font-bold ">All the queries of products</h2>
+    <div className=" w-11/12 mx-auto  pt-10">
+      <h2 className="text-3xl  font-bold py-10">All the queries of products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {queries.map((query) => (
           <div key={query._id} className="card bg-base-100 shadow-xl">
             <figure>
               <img
-                className="h-52"
+                className="h-52 pt-2"
                 src={query.productImageUrl}
                 alt={query.productName}
               />
             </figure>
-            <div className="card-body p-0 justify-start items-start">
+            <div className="card-body p-5 justify-start items-start">
               <h2 className="card-title">Product : {query.productName}</h2>
               <p> Brand/Category: {query.productBrand}</p>
               <div className="card-actions justify-start">
@@ -42,7 +42,7 @@ const Queries = () => {
             </div>
             <Link
               to={`/queryDetails/${query._id}`}
-              className="flex justify-start mt-2"
+              className="flex justify-start my-2 p-6"
             >
               <button className="btn btn-primary">Recommend </button>
             </Link>

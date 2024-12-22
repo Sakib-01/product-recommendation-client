@@ -50,10 +50,12 @@ const TabCategory = () => {
           </TabPanel>
         ))}
       </div>
-      <Link className="flex justify-start ml-10" to="/queries">
-        {" "}
-        <button className=" btn btn-secondary">Show more..</button>
-      </Link>
+      <div className="container mx-auto">
+        <Link className=" flex justify-start mx-6" to="/queries">
+          {" "}
+          <button className=" btn btn-secondary">Show more..</button>
+        </Link>
+      </div>
     </Tabs>
   );
 };

@@ -21,7 +21,7 @@ const ProductCard = ({ query }) => {
       <figure>
         <img className="h-52" src={productImageUrl} alt={productName} />
       </figure>
-      <div className="card-body p-0 justify-start items-start">
+      <div className="card-body p-6 justify-start items-start">
         <h2 className="card-title">Product : {productName}</h2>
         <p> Brand/Category: {productBrand}</p>
         <div className="card-actions justify-start">
