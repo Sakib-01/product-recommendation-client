@@ -71,7 +71,7 @@ const Navbar = () => {
               >
                 Recommendations For Me
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/addQuery"
                 className={({ isActive }) =>
                   `cursor-pointer hover:text-primary ${
@@ -80,7 +80,7 @@ const Navbar = () => {
                 }
               >
                 Add Query
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/myQuery"
                 className={({ isActive }) =>
@@ -188,13 +188,13 @@ const Navbar = () => {
               >
                 Recommendations for me
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/addQuery"
                 onClick={() => setShowMobileMenu(false)}
                 className="btn btn-primary btn-block"
               >
                 Add Query
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/myQuery"
                 onClick={() => setShowMobileMenu(false)}

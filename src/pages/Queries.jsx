@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 
 const Queries = () => {
   const [queries, setQueries] = useState([]);
+  const [search, setSearch] = useState("");
+
   const [gridColumns, setGridColumns] = useState("grid-cols-2");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/all-queries`)
+    setLoading(true);
+    fetch(`${import.meta.env.VITE_API_URL}/all-queries?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
@@ -16,7 +19,7 @@ const Queries = () => {
         );
         setQueries(sortedData);
       });
-  }, []);
+  }, [search]);
 
   const handleGridChange = (columns) => {
     setGridColumns(columns);
@@ -27,31 +30,47 @@ const Queries = () => {
       <h2 className="text-3xl font-bold py-10">All the queries of products</h2>
 
       {/* Buttons for toggling grid layout */}
-      <div className="flex justify-center space-x-4 mb-6">
-        <button
-          className="btn btn-primary lg:hidden"
-          onClick={() => handleGridChange("grid-cols-1")}
-        >
-          1 Column
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={() => handleGridChange("grid-cols-2")}
-        >
-          2 Columns
-        </button>
-        <button
-          className=" hidden md:block btn btn-accent"
-          onClick={() => handleGridChange("grid-cols-3")}
-        >
-          3 Columns
-        </button>
-        <button
-          className=" hidden md:block btn btn-primary"
-          onClick={() => handleGridChange("grid-cols-4")}
-        >
-          4 Columns
-        </button>
+      <div className=" flex justify-between items-center">
+        <label className="form-control w-full max-w-xs ">
+          <div className="label">
+            <span className="label-text text-base font-semibold">
+              Search Query
+            </span>
+            <input
+              type="text"
+              name="searchParams"
+              placeholder="Search by Name"
+              onChange={(e) => setSearch(e.target.value)}
+              className="input input-bordered  input-primary w-full max-w-xs"
+            />
+          </div>
+        </label>
+        <div className="flex justify-center space-x-4 mb-6">
+          <button
+            className="btn btn-primary lg:hidden"
+            onClick={() => handleGridChange("grid-cols-1")}
+          >
+            1 Column
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleGridChange("grid-cols-2")}
+          >
+            2 Columns
+          </button>
+          <button
+            className=" hidden md:block btn btn-accent"
+            onClick={() => handleGridChange("grid-cols-3")}
+          >
+            3 Columns
+          </button>
+          <button
+            className=" hidden md:block btn btn-primary"
+            onClick={() => handleGridChange("grid-cols-4")}
+          >
+            4 Columns
+          </button>
+        </div>
       </div>
 
       {/* Grid Layout */}
