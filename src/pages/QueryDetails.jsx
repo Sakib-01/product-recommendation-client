@@ -129,6 +129,11 @@ const QueryDetails = () => {
           <div className="mt-4 flex justify-center items-center">
             <img className="w-60 mx-auto" src={query.productImageUrl} alt="" />
             <div>
+              <p className="text-lg">
+                <strong>Query Posted By:</strong> <br /> {query.userName} <br />
+                {query.userEmail}
+              </p>
+              <br />
               <p className="text-xl">
                 <strong>Product Name:</strong> {query.productName}
               </p>
@@ -144,7 +149,7 @@ const QueryDetails = () => {
             </div>
           </div>
           <div className="overflow-x-auto ">
-            <h2 className="text-xl font-semibold mt-5">
+            <h2 className="text-xl font-semibold mt-5 underline">
               Recommends for this product
             </h2>
             <div className="max-h-80 overflow-y-auto">

@@ -31,11 +31,16 @@ const RecommendationsForMe = () => {
     return <LoadingSpinner />;
   }
   console.log(recomendations);
-
   const uniqueName = [
-    ...new Set(
-      recomendations.map((recomendation) => recomendation.productName)
-    ),
+    ...new Map(
+      recomendations.map((recomendation) => [
+        recomendation.productName, // Use productName as the key
+        {
+          productName: recomendation.productName,
+          productImageURL: recomendation.productImageUrl,
+        },
+      ])
+    ).values(),
   ];
 
   return (
@@ -55,7 +60,7 @@ const RecommendationsForMe = () => {
                   key={index}
                   className="px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 ease-in-out rounded-lg cursor-pointer hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  {name}
+                  {name.productName}
                 </Tab>
               ))}
             </TabList>
@@ -63,23 +68,79 @@ const RecommendationsForMe = () => {
 
           {uniqueName.map((name, index) => (
             <TabPanel key={index}>
-              <h2 className="text-xl font-semibold text-center text-gray-800 capitalize lg:text-2xl ">
-                Recomendation for{" "}
-                <span className="text-xl font-semibold text-center text-blue-800 capitalize lg:text-2xl">
-                  {name}
-                </span>
-              </h2>
-              <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 ">
-                {recomendations
-                  .filter((recomendation) => recomendation.productName === name)
-
-                  .map((recomendation) => (
-                    <RecommendationCard
-                      key={recomendation._id}
-                      recomendation={recomendation}
-                      name={name}
-                    ></RecommendationCard>
-                  ))}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5  ">
+                <div className=" col-span-1   flex justify-center items-center ">
+                  <div className="">
+                    <h2 className="text-xl font-semibold text-center text-gray-800 capitalize lg:text-2xl ">
+                      Recomendation for
+                    </h2>
+                    <div className="text-xl font-semibold text-center text-blue-800 capitalize lg:text-2xl my-4">
+                      <div className="flex justify-center ">
+                        <img
+                          className="w-40 "
+                          src={name.productImageURL}
+                          alt=""
+                        />
+                      </div>
+                      {name.productName}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-2 overflow-x-auto ">
+                  <table className="table w-full border border-gray-300">
+                    <thead>
+                      <tr className="bg-gray-200 text-left">
+                        <th className="py-3 px-4">Image</th>
+                        <th className="py-3 px-4">Product Name</th>
+                        <th className="py-3 px-4">Query Title</th>
+                        <th className="py-3 px-4">Reason</th>
+                        <th className="py-3 px-4">Recommended By</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {recomendations
+                        .filter(
+                          (recomendation) =>
+                            recomendation.productName === name.productName
+                        )
+                        .map((recomendation) => (
+                          <tr
+                            key={recomendation._id}
+                            className="hover:bg-gray-100"
+                          >
+                            <td className="py-3 px-4">
+                              <img
+                                className="w-32 h-24 rounded-md"
+                                src={recomendation.recommendedProductImage}
+                                alt={recomendation.recommendedProductName}
+                              />
+                            </td>
+                            <td className="py-3 px-4">
+                              {recomendation.recommendedProductName}
+                            </td>
+                            <td className="py-3 px-4">
+                              {recomendation.recommendationTitle}
+                            </td>
+                            <td className="py-3 px-4">
+                              {recomendation.recommendationReason}
+                            </td>
+                            <td className="py-3 px-4">
+                              <div>
+                                <p>
+                                  <strong>Name:</strong>{" "}
+                                  {recomendation.recomenderName}
+                                </p>
+                                <p>
+                                  <strong>Email:</strong>{" "}
+                                  {recomendation.recomenderEmail}
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </TabPanel>
           ))}

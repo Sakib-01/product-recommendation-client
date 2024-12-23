@@ -2,42 +2,44 @@ import React from "react";
 
 const RecommendationCard = ({ recomendation }) => {
   return (
-    <div>
-      <div className="flex-1 flex justify-center items-center">
-        <div className="flex flex-col pt-5">
-          <div className="mt-4 ">
-            <img
-              className="w-60 h-48 mx-auto"
-              src={recomendation.recommendedProductImage}
-              alt=""
-            />
-            <div>
-              <p className="text-xl mt-3">
-                <strong>Product Name:</strong>{" "}
-                {recomendation.recommendedProductName}
-              </p>
-
-              <p className="text-xl mt-4">
-                <strong>Query Title:</strong>{" "}
-                {recomendation.recommendationTitle}
-              </p>
-              <p className="text-xl">
-                <strong>Reason :</strong> {recomendation.recommendationReason}
-              </p>
-              <p className="text-xl mt-4">
-                <strong>Recommended By:</strong> {recomendation.recomenderName}{" "}
-                <br />
-                <strong> Email:</strong> {recomendation.recomenderEmail}
-              </p>
-            </div>
-          </div>
-          {/* <div className="overflow-x-auto ">
-    <h2 className="text-xl font-semibold mt-5">
-      Recommends for this product
-    </h2>
-  </div> */}
-        </div>
-      </div>
+    <div className="overflow-x-auto p-5">
+      <table className="table w-full border border-gray-300">
+        <thead>
+          <tr className="bg-gray-200 text-left">
+            <th className="py-3 px-4">Image</th>
+            <th className="py-3 px-4">Product Name</th>
+            <th className="py-3 px-4">Query Title</th>
+            <th className="py-3 px-4">Reason</th>
+            <th className="py-3 px-4">Recommended By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="hover:bg-gray-100">
+            <td className="py-3 px-4">
+              <img
+                className="w-32 h-24 rounded-md"
+                src={recomendation.recommendedProductImage}
+                alt={recomendation.recommendedProductName}
+              />
+            </td>
+            <td className="py-3 px-4">
+              {recomendation.recommendedProductName}
+            </td>
+            <td className="py-3 px-4">{recomendation.recommendationTitle}</td>
+            <td className="py-3 px-4">{recomendation.recommendationReason}</td>
+            <td className="py-3 px-4">
+              <div>
+                <p>
+                  <strong>Name:</strong> {recomendation.recomenderName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {recomendation.recomenderEmail}
+                </p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
