@@ -10,7 +10,6 @@ const Queries = () => {
   const [gridColumns, setGridColumns] = useState("grid-cols-2");
 
   useEffect(() => {
-    setLoading(true);
     fetch(`${import.meta.env.VITE_API_URL}/all-queries?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => {
