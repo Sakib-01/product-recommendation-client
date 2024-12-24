@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import RecommendationCard from "../components/RecommendationCard";
+import { axiosSecure } from "../hooks/AxiosSecure";
 
 const RecommendationsForMe = () => {
   const { user } = useContext(AuthContext);
@@ -16,9 +17,13 @@ const RecommendationsForMe = () => {
 
   const fetchRecomendationsData = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/recommendation-for-me/${user?.email}`
+      const { data } = await axiosSecure.get(
+        `/recommendation-for-me/${user?.email}`
       );
+      // const { data } = await axios.get(
+      //   `${import.meta.env.VITE_API_URL}/recommendation-for-me/${user?.email}`,
+      //   { withCredentials: true }
+      // );
       console.log("Fetched data:", data);
       setRecomendations(data);
     } catch (error) {

@@ -8,6 +8,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { axiosSecure } from "../hooks/AxiosSecure";
 
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
@@ -25,9 +26,13 @@ const MyRecommendation = () => {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/my-recommendation/${user?.email}`
+      const response = await axiosSecure.get(
+        `/my-recommendation/${user?.email}`
       );
+      // const response = await axios.get(
+      //   `${import.meta.env.VITE_API_URL}/my-recommendation/${user?.email}`,
+      //   { withCredentials: true }
+      // );
       setRecommendations(response.data);
     } catch (err) {
       console.error(err);

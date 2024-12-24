@@ -9,6 +9,7 @@ import { GrView } from "react-icons/gr";
 import { FaEdit, FaRegComments } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
+import { axiosSecure } from "../hooks/AxiosSecure";
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
@@ -25,9 +26,7 @@ const MyQuery = () => {
   const fetchQueryData = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/my-query/${user?.email}`
-      );
+      const { data } = await axiosSecure.get(`/my-query/${user?.email}`);
       const sortedData = data.sort(
         (a, b) => new Date(b.currentDateTime) - new Date(a.currentDateTime)
       );
