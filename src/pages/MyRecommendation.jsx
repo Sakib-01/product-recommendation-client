@@ -8,13 +8,14 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { axiosSecure } from "../hooks/AxiosSecure";
+import useAxiosSecure, { axiosSecure } from "../hooks/useAxiosSecure";
 
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {

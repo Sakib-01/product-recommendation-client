@@ -4,6 +4,7 @@ import login from "../../assets/Lottie/login.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -26,6 +27,12 @@ const SignIn = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
+      Swal.fire({
+        title: "error!",
+        text: "Login failed . Please try again",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
   };
 
@@ -39,6 +46,12 @@ const SignIn = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
+      Swal.fire({
+        title: "error!",
+        text: "Login failed . Please try again",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
   };
   return (

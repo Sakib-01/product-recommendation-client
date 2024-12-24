@@ -45,6 +45,12 @@ const Register = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
+      Swal.fire({
+        title: "Error",
+        text: err.message,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
   };
 

@@ -9,13 +9,14 @@ import { GrView } from "react-icons/gr";
 import { FaEdit, FaRegComments } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
-import { axiosSecure } from "../hooks/AxiosSecure";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
   const [query, setQuery] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {

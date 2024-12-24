@@ -4,10 +4,11 @@ import { AuthContext } from "../providers/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import RecommendationCard from "../components/RecommendationCard";
-import { axiosSecure } from "../hooks/AxiosSecure";
+import useAxiosSecure, { axiosSecure } from "../hooks/useAxiosSecure";
 
 const RecommendationsForMe = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [recomendations, setRecomendations] = useState(null); // State for the recomendations data
   const [error, setError] = useState(null);
 
