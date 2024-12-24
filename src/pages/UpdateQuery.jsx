@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
@@ -9,6 +9,7 @@ const UpdateQuery = () => {
   const { id } = useParams(); // Get the id from URL
   const [query, setQuery] = useState(null); // State for the query data
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchQueryData();

@@ -32,7 +32,7 @@ const QueryDetails = () => {
     const { data } = await axios.get(
       `${import.meta.env.VITE_API_URL}/recomendations/${id}`
     );
-    setRecommendations(data);
+    setRecommendations(data.reverse());
   };
 
   //   fetch query data
@@ -115,6 +115,7 @@ const QueryDetails = () => {
         icon: "success",
         confirmButtonText: "Ok",
       });
+      fetchRecommendationData();
       //   navigate("/my-posted-jobs");
     } catch (err) {
       console.log(err);

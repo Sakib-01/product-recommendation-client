@@ -34,7 +34,7 @@ const MyRecommendation = () => {
       //   `${import.meta.env.VITE_API_URL}/my-recommendation/${user?.email}`,
       //   { withCredentials: true }
       // );
-      setRecommendations(response.data);
+      setRecommendations(response.data.reverse());
     } catch (err) {
       console.error(err);
       setError("Failed to fetch recommendations. Please try again later.");
