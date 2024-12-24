@@ -1,10 +1,11 @@
 import React from "react";
 import TabCategory from "../components/TabCategory";
+import Banner from "../components/Banner";
 
 const Home = () => {
   return (
     <div>
-      <h2>home section</h2>
+      <Banner />
       <TabCategory />
     </div>
   );
