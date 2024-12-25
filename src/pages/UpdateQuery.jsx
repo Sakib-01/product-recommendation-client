@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { axiosSecure } from "../hooks/useAxiosSecure";
 
 const UpdateQuery = () => {
   const { id } = useParams(); // Get the id from URL
@@ -17,9 +18,7 @@ const UpdateQuery = () => {
 
   const fetchQueryData = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/query/${id}`
-      );
+      const { data } = await axiosSecure.get(`/query/${id}`);
       console.log("Fetched data:", data);
       setQuery(data);
     } catch (error) {

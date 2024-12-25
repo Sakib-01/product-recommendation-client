@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { axiosSecure } from "../hooks/useAxiosSecure";
 
 const QueryDetails = () => {
   const { user } = useContext(AuthContext);
@@ -36,9 +37,7 @@ const QueryDetails = () => {
   }, [id]);
 
   const fetchRecommendationData = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/recomendations/${id}`
-    );
+    const { data } = await axiosSecure.get(`/recomendations/${id}`);
     setRecommendations(data.reverse());
   };
 
@@ -48,9 +47,7 @@ const QueryDetails = () => {
   }, [id]);
 
   const fetchQueryData = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/query/${id}`
-    );
+    const { data } = await axiosSecure.get(`/query/${id}`);
     setQuery(data);
   };
 
@@ -109,10 +106,7 @@ const QueryDetails = () => {
     // form.reset();
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/add-recommendation`,
-        newRecommend
-      );
+      await axiosSecure.post(`/add-recommendation`, newRecommend);
 
       // Show success toast and navigate after the post is successful
       //   toast.success("Data added successfully");

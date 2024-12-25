@@ -7,6 +7,7 @@ import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import { axiosSecure } from "../hooks/useAxiosSecure";
 
 const AddQuery = () => {
   const { user } = useContext(AuthContext);
@@ -62,7 +63,7 @@ const AddQuery = () => {
     //   });
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/add-query`, newQuery);
+      await axiosSecure.post(`/add-query`, newQuery);
 
       // Show success toast and navigate after the post is successful
       //   toast.success("Data added successfully");
