@@ -103,8 +103,11 @@ const MyQuery = () => {
       </div>
 
       {/* Queries Section */}
-      <div data-aos="fade-up" className="mt-20 md:mt-48 lg:mt-0">
-        <h2 className="text-5xl font-bold mb-6">
+      <div
+        data-aos="fade-up"
+        className="w-11/12 mx-auto mt-20 md:mt-48 lg:mt-0"
+      >
+        <h2 className="text-5xl font-bold mb-6 md:pl-5">
           Queries that you have created
         </h2>
         {loading && (
