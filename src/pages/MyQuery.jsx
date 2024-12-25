@@ -23,6 +23,9 @@ const MyQuery = () => {
       fetchQueryData();
     }
   }, [user?.email]);
+  useEffect(() => {
+    document.title = "ProRecco - MyQuery";
+  }, []);
 
   const fetchQueryData = async () => {
     try {
@@ -125,7 +128,7 @@ const MyQuery = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col md:flex-row space-x-4 ml-6">
+              <div className="flex flex-col md:flex-row items-end gap-1  space-x-4 ml-6">
                 <Link to={`/queryDetails/${q._id}`}>
                   <button className="btn btn-primary btn-sm">
                     <GrView />

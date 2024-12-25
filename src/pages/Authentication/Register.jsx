@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signup from "../../assets/Lottie/registration.json";
 import Lottie from "lottie-react";
@@ -66,14 +66,14 @@ const Register = () => {
       toast.error(err?.message);
     }
   };
+
+  useEffect(() => {
+    document.title = "ProRecco - Sign up";
+  }, []);
   return (
     <div className="flex   justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          {/* <div className="flex justify-center mx-auto">
-            <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
-          </div> */}
-
           <p className="mt-3 text-xl text-center text-gray-600 ">
             Get Your Free Account Now.
           </p>
@@ -198,9 +198,9 @@ const Register = () => {
 
             <Link
               to="/login"
-              className="text-xs text-gray-500 uppercase  hover:underline"
+              className="text-lg text-gray-500 uppercase  hover:underline hover:text-black"
             >
-              or sign in
+              or Login
             </Link>
 
             <span className="w-1/5 border-b  md:w-1/4"></span>

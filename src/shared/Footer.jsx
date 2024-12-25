@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import logo from "../assets/img/logo.jpg";
 
 const Footer = () => {
   return (
@@ -7,8 +8,8 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Website Name */}
         <div className="flex flex-col items-center md:items-center">
-          {/* <img className="w-20" src={gameGear} alt="" /> */}
-          <h2 className="text-2xl font-bold text-blue-700 mb-2">Ontoz</h2>
+          <img className="w-20" src={logo} alt="" />
+          <h2 className="text-2xl font-bold text-blue-700 mb-2">ProRecco</h2>
           <p className="text-sm">Your go-to place for the best Products.</p>
         </div>
 

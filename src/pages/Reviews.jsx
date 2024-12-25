@@ -52,7 +52,7 @@ const Reviews = () => {
   ];
 
   return (
-    <div className="container mx-auto py-16 px-6 ">
+    <div className="w-11/12 mx-auto py-16 px-6 ">
       <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-8">
         What Our Clients Say
       </h2>

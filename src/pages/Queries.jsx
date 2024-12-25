@@ -24,6 +24,10 @@ const Queries = () => {
     setGridColumns(columns);
   };
 
+  useEffect(() => {
+    document.title = "ProRecco - Queries";
+  }, []);
+
   return (
     <div className="w-11/12 mx-auto pt-10">
       <h2 className="text-3xl font-bold py-10">All the queries of products</h2>

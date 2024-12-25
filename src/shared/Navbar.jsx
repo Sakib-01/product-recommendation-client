@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import menuIcon from "../assets/menu_icon.png";
 import crossIcon from "../assets/cross_icon.svg";
+import logo from "../assets/img/logo.jpg";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -32,10 +33,13 @@ const Navbar = () => {
   return (
     <div className="absolute top-0 left-0 w-full z-20 bg-base-100 shadow-lg">
       <div className="lg:w-11/12 mx-auto flex justify-between items-center py-4  ">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <h1 className="text-primary font-bold text-3xl ">Ontoz</h1>
-        </Link>
+        <div className="flex gap-2">
+          {/* Logo */}
+          <img className="w-14" src={logo} alt="" />
+          <Link to="/" className="flex items-center gap-2">
+            <h1 className="text-primary font-bold text-3xl ">ProRecco</h1>
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-6 text-neutral font-medium">
@@ -223,11 +227,11 @@ const Navbar = () => {
             </button>
           ) : (
             <Link
-              to="/signup"
+              to="/login"
               onClick={() => setShowMobileMenu(false)}
               className="btn btn-primary btn-block"
             >
-              Sign Up
+              Login
             </Link>
           )}
         </ul>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TabCategory from "../components/TabCategory";
 import Banner from "../components/Banner";
 import Reviews from "./Reviews";
@@ -7,6 +7,9 @@ import Newsletter from "../components/Newsletter";
 import Offers from "../components/Offers";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "ProRecco - Home";
+  }, []);
   return (
     <div>
       <Banner />

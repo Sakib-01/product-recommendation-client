@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../assets/Lottie/login.json";
 import Lottie from "lottie-react";
@@ -54,20 +54,14 @@ const SignIn = () => {
       });
     }
   };
+  useEffect(() => {
+    document.title = "ProRecco - Login";
+  }, []);
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-24">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
-        {/* <div
-            className="hidden bg-cover bg-center lg:block lg:w-1/2"
-            style={{
-              backgroundImage: `url(${bgImg})`,
-            }}
-          ></div> */}
-
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <div className="flex justify-center mx-auto">
-            {/* <img className='w-auto h-7 sm:h-8' src={logo} alt='' /> */}
-          </div>
+          <div className="flex justify-center mx-auto"></div>
 
           <p className="mt-3 text-xl text-center text-gray-600 ">
             Welcome back!
@@ -158,15 +152,17 @@ const SignIn = () => {
             </span>
           </div>
 
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex flex-col items-center justify-between mt-4">
+            <h2 className="text-blue-700 font-bold text-lg">
+              Don't have account??
+            </h2>
             <span className="w-1/5 border-b  md:w-1/4"></span>
 
             <Link
               to="/signup"
-              className="text-xs text-gray-500 uppercase  hover:underline hover:text-green-400"
+              className="text-base text-gray-700 uppercase  hover:underline hover:text-black text-center"
             >
-              or <br />
-              Click to Sign up
+              Click to <span className="">Sign up</span>
             </Link>
 
             <span className="w-1/5 border-b  md:w-1/4"></span>

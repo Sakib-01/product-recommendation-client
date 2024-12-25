@@ -2,21 +2,33 @@ import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import ProductCard from "./ProductCard";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const TabCategory = () => {
   const [queries, setQueries] = useState([]);
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/all-queries`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchQueries = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/all-queries`,
+          {
+            withCredentials: true,
+          }
+        );
         const sortedData = data.sort(
           (a, b) => new Date(b.currentDateTime) - new Date(a.currentDateTime)
         );
         setQueries(sortedData);
-      });
+      } catch (error) {
+        console.error("Error fetching queries:", error);
+      }
+    };
+
+    fetchQueries();
   }, []);
+
   const uniqueBrands = [...new Set(queries.map((query) => query.productBrand))];
-  //   console.log(uniqueBrands);
   return (
     <Tabs>
       <div className="container px-6 py-10 mx-auto">

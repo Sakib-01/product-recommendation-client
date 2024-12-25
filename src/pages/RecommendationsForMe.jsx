@@ -16,6 +16,10 @@ const RecommendationsForMe = () => {
     fetchRecomendationsData();
   }, [user?.email]);
 
+  useEffect(() => {
+    document.title = "ProRecco - Recommendations For Me";
+  }, []);
+
   const fetchRecomendationsData = async () => {
     try {
       const { data } = await axiosSecure.get(

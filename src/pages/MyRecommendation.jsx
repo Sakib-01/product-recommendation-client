@@ -23,6 +23,10 @@ const MyRecommendation = () => {
     }
   }, [user?.email]);
 
+  useEffect(() => {
+    document.title = "ProRecco - MyRecommendation";
+  }, []);
+
   const fetchRecommendations = async () => {
     try {
       setLoading(true);

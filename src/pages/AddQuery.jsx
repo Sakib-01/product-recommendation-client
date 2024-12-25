@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { format } from "date-fns";
 import toast from "react-hot-toast";
@@ -74,6 +74,9 @@ const AddQuery = () => {
       toast.error(err.message || "Failed to add data");
     }
   };
+  useEffect(() => {
+    document.title = "ProRecco || Add Query";
+  }, []);
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
