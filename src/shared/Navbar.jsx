@@ -120,6 +120,7 @@ const Navbar = () => {
                     referrerPolicy="no-referrer"
                     src={user?.photoURL || "https://via.placeholder.com/150"}
                     alt="User"
+                    title={user?.displayName}
                   />
                 </div>
               </div>

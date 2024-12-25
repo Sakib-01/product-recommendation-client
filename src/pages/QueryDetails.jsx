@@ -198,7 +198,13 @@ const QueryDetails = () => {
                             </div>
                           </div>
                         </td>
-                        <td>{recommendation.recommendationReason}</td>
+                        <td>
+                          {recommendation.recommendationReason} <br />{" "}
+                          {format(
+                            new Date(recommendation.currentDateTime),
+                            "P"
+                          )}
+                        </td>
                         <td>
                           <span className="font-bold">Name : </span>{" "}
                           {recommendation.recomenderName}

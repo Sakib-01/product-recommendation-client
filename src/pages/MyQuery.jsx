@@ -117,6 +117,9 @@ const MyQuery = () => {
         {!loading && query?.length === 0 && (
           <p className="text-center text-gray-500">
             You haven't created any queries yet.
+            <Link to="/addQuery">
+              <button className="btn btn-primary ">Add Query...</button>
+            </Link>
           </p>
         )}
         {query?.map((q) => (
