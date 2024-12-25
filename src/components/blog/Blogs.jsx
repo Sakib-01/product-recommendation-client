@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 const Blogs = () => {
   const blogs = [
@@ -30,6 +30,20 @@ const Blogs = () => {
     },
   ];
 
+  const [modalData, setModalData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to open the modal with the specific blog details
+  const openModal = (blog) => {
+    setModalData(blog);
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold text-center mb-8">Blogs</h1>
@@ -48,16 +62,36 @@ const Blogs = () => {
             <div className="card-body">
               <h2 className="card-title">{blog.title}</h2>
               <p>{blog.description}</p>
-              {/* <Link
-                //   to={`/blog/${blog.id}`}
+              <button
+                onClick={() => openModal(blog)}
                 className="btn btn-primary mt-4"
               >
                 Read More
-              </Link> */}
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {isModalOpen && modalData && (
+        <div
+          className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white p-8 rounded-lg w-1/2"
+            onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
+          >
+            <img src={modalData.image} alt="" />
+            <h2 className="text-2xl font-bold mb-4">{modalData.title}</h2>
+            <p>{modalData.content}</p>
+            <button onClick={closeModal} className="btn btn-secondary mt-4">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
