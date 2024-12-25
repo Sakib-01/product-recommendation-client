@@ -6,6 +6,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import RecommendationCard from "../components/RecommendationCard";
 import useAxiosSecure, { axiosSecure } from "../hooks/useAxiosSecure";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
 const RecommendationsForMe = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -18,6 +20,11 @@ const RecommendationsForMe = () => {
 
   useEffect(() => {
     document.title = "ProRecco - Recommendations For Me";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
 
   const fetchRecomendationsData = async () => {
@@ -56,14 +63,17 @@ const RecommendationsForMe = () => {
   return (
     <div>
       <Tabs>
-        <div className="container px-6 py-10 mx-auto">
+        <div data-aos="fade-up" className="container px-6 py-10 mx-auto">
           <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl mb-5">
             Product Recommended By Other User
           </h1>
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 ">
             Check this Recommended products and make Best Choice for you!!
           </p>
-          <div className="flex items-center justify-center mb-6">
+          <div
+            data-aos="zoom-in"
+            className="flex items-center justify-center mb-6"
+          >
             <TabList className="flex items-center justify-center space-x-6 p-4 bg-gray-100 rounded-xl shadow-md">
               {uniqueName.map((name, index) => (
                 <Tab
@@ -79,7 +89,10 @@ const RecommendationsForMe = () => {
           {uniqueName.map((name, index) => (
             <TabPanel key={index}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5  ">
-                <div className=" col-span-1   flex justify-center items-center ">
+                <div
+                  data-aos="fade-right"
+                  className=" col-span-1   flex justify-center items-center "
+                >
                   <div className="">
                     <h2 className="text-xl font-semibold text-center text-gray-800 capitalize lg:text-2xl ">
                       Recomendation for
@@ -97,7 +110,10 @@ const RecommendationsForMe = () => {
                   </div>
                 </div>
                 <div className="col-span-2 overflow-x-auto ">
-                  <table className="table w-full border border-gray-300">
+                  <table
+                    data-aos="fade-left"
+                    className="table w-full border border-gray-300"
+                  >
                     <thead>
                       <tr className="bg-gray-200 text-left">
                         <th className="py-3 px-4">Image</th>

@@ -4,9 +4,13 @@ import { format } from "date-fns";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const AddQuery = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   //   console.log(user);
 
   const handleSubmit = async (e) => {
@@ -68,7 +72,7 @@ const AddQuery = () => {
         icon: "success",
         confirmButtonText: "Ok",
       });
-      //   navigate("/my-posted-jobs");
+      navigate("/myQuery");
     } catch (err) {
       console.log(err);
       toast.error(err.message || "Failed to add data");
@@ -76,9 +80,17 @@ const AddQuery = () => {
   };
   useEffect(() => {
     document.title = "ProRecco || Add Query";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <div
+      data-aos="zoom-in"
+      className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6"
+    >
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
         Add Product Query
       </h2>
@@ -107,16 +119,22 @@ const AddQuery = () => {
             className="block mb-2 text-sm font-medium text-gray-700"
             htmlFor="productBrand"
           >
-            Product Brand
+            Product Brand / Category
           </label>
-          <input
+          <select
             id="productBrand"
             name="productBrand"
-            placeholder="Enter product brand"
             className="block w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
-            type="text"
             required
-          />
+          >
+            <option value="" disabled selected>
+              Select product brand
+            </option>
+            <option value="Laptop">Laptop</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
 
         {/* Product Image URL */}

@@ -5,6 +5,8 @@ import axios from "axios";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const QueryDetails = () => {
   const { user } = useContext(AuthContext);
@@ -26,6 +28,11 @@ const QueryDetails = () => {
   //   fetch recommendation data
   useEffect(() => {
     fetchRecommendationData();
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, [id]);
 
   const fetchRecommendationData = async () => {
@@ -127,7 +134,10 @@ const QueryDetails = () => {
     <div className="flex flex-col md:flex-row pt-10">
       <div className="flex-1 flex justify-center items-center">
         <div className="flex flex-col pt-5">
-          <div className="mt-4 flex justify-center items-center">
+          <div
+            data-aos="fade-right"
+            className="mt-4 flex justify-center items-center"
+          >
             <img className="w-60 mx-auto" src={query.productImageUrl} alt="" />
             <div>
               <p className="text-lg">
@@ -153,7 +163,7 @@ const QueryDetails = () => {
             <h2 className="text-xl font-semibold mt-5 underline">
               Recommends for this product
             </h2>
-            <div className="max-h-80 overflow-y-auto">
+            <div data-aos="fade-up" className="max-h-80 overflow-y-auto">
               {recommendations && recommendations.length > 0 ? (
                 <table className="table">
                   {/* head */}
@@ -207,8 +217,8 @@ const QueryDetails = () => {
         </div>
       </div>
       <div className="flex-1">
-        <div className="w-10/12 mx-auto">
-          <h1 className="text-3xl font-semibold py-5">
+        <div data-aos="fade-left" className="w-10/12 mx-auto">
+          <h1 data-aos="fade-left" className="text-3xl font-semibold py-5">
             Do you have any Recommendation ?
           </h1>
           <form onSubmit={handleRecommend}>

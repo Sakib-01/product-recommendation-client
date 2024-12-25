@@ -10,6 +10,8 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosSecure, { axiosSecure } from "../hooks/useAxiosSecure";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
   const [recommendations, setRecommendations] = useState([]);
@@ -25,6 +27,11 @@ const MyRecommendation = () => {
 
   useEffect(() => {
     document.title = "ProRecco - MyRecommendation";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
 
   const fetchRecommendations = async () => {
@@ -90,7 +97,7 @@ const MyRecommendation = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <div className="text-center mb-6">
+      <div data-aos="fade-up" className="text-center mb-6">
         <h2 className="text-2xl font-semibold text-gray-800">
           My Recommendations{" "}
           {recommendations.length > 0 && `(${recommendations.length})`}
@@ -119,6 +126,7 @@ const MyRecommendation = () => {
         <div className="grid grid-cols-1 gap-6">
           {recommendations.map((rec, index) => (
             <div
+              data-aos="fade-up"
               key={index}
               className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300"
             >

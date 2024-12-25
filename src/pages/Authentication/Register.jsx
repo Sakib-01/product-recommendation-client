@@ -5,6 +5,8 @@ import Lottie from "lottie-react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -69,9 +71,17 @@ const Register = () => {
 
   useEffect(() => {
     document.title = "ProRecco - Sign up";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
   return (
-    <div className="flex   justify-center items-center min-h-[calc(100vh-306px)] my-12">
+    <div
+      data-aos="fade-right"
+      className="flex   justify-center items-center min-h-[calc(100vh-306px)] my-12"
+    >
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <p className="mt-3 text-xl text-center text-gray-600 ">

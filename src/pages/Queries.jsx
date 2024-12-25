@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Queries = () => {
   const [queries, setQueries] = useState([]);
@@ -26,15 +28,22 @@ const Queries = () => {
 
   useEffect(() => {
     document.title = "ProRecco - Queries";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
 
   return (
     <div className="w-11/12 mx-auto pt-10">
-      <h2 className="text-3xl font-bold py-10">All the queries of products</h2>
+      <h2 data-aos="fade-up" className="text-3xl font-bold py-10">
+        All the queries of products
+      </h2>
 
       {/* Buttons for toggling grid layout */}
       <div className=" flex justify-between items-center">
-        <label className="form-control w-full max-w-xs ">
+        <label data-aos="zoom-in" className="form-control w-full max-w-xs ">
           <div className="label">
             <span className="label-text text-base font-semibold">
               Search Query
@@ -50,24 +59,28 @@ const Queries = () => {
         </label>
         <div className="flex flex-col md:flex-row justify-center gap-2 space-x-4 mb-6">
           <button
+            data-aos="fade-up"
             className="btn btn-primary lg:hidden"
             onClick={() => handleGridChange("grid-cols-1")}
           >
             1 Column
           </button>
           <button
+            data-aos="fade-up"
             className="btn btn-secondary"
             onClick={() => handleGridChange("grid-cols-2")}
           >
             2 Columns
           </button>
           <button
+            data-aos="fade-up"
             className=" hidden md:block btn btn-accent"
             onClick={() => handleGridChange("grid-cols-3")}
           >
             3 Columns
           </button>
           <button
+            data-aos="fade-up"
             className=" hidden md:block btn btn-primary"
             onClick={() => handleGridChange("grid-cols-4")}
           >
@@ -79,7 +92,11 @@ const Queries = () => {
       {/* Grid Layout */}
       <div className={`grid ${gridColumns} gap-5`}>
         {queries.map((query) => (
-          <div key={query._id} className="card bg-base-100 shadow-xl">
+          <div
+            data-aos="zoom-in"
+            key={query._id}
+            className="card bg-base-100 shadow-xl"
+          >
             <figure>
               <img
                 className="h-52 pt-2 w-[14rem]"
@@ -87,7 +104,10 @@ const Queries = () => {
                 alt={query.productName}
               />
             </figure>
-            <div className="card-body p-5 justify-start items-start">
+            <div
+              data-aos="zoom-in"
+              className="card-body p-5 justify-start items-start"
+            >
               <h2 className="card-title">Product : {query.productName}</h2>
               <p> Brand/Category: {query.productBrand}</p>
               <div className="card-actions justify-start">

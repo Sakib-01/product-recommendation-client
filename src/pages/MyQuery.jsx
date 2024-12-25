@@ -10,6 +10,9 @@ import { FaEdit, FaRegComments } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Swal from "sweetalert2";
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
@@ -25,6 +28,11 @@ const MyQuery = () => {
   }, [user?.email]);
   useEffect(() => {
     document.title = "ProRecco - MyQuery";
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: "ease-in-out", // Easing function
+      once: true, // Whether animation happens only once
+    });
   }, []);
 
   const fetchQueryData = async () => {
@@ -48,21 +56,37 @@ const MyQuery = () => {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/deleteQuery/${id}`
-      );
-      console.log(data);
-      toast.success("Data Deleted Successfully!!!");
-      fetchQueryData();
+      // Show SweetAlert2 confirmation dialog
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        // If user confirms, proceed to delete
+        const { data } = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/deleteQuery/${id}`
+        );
+        console.log(data);
+
+        fetchQueryData();
+        Swal.fire("Deleted!", "Your data has been deleted.", "success");
+      }
     } catch (err) {
       console.log(err);
-      toast.error(err.message);
+
+      Swal.fire("Error!", "Failed to delete the data.", "error");
     }
   };
   return (
     <div className="container mx-auto flex flex-col">
       {/* Hero Section */}
-      <div className="hero bg-base-200 h-[450px] my-10">
+      <div data-aos="fade-up" className="hero bg-base-200 h-[450px] my-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <Lottie animationData={queryLottie} className="w-1/2" />
           <div>
@@ -79,7 +103,7 @@ const MyQuery = () => {
       </div>
 
       {/* Queries Section */}
-      <div className="mt-20 md:mt-48 lg:mt-0">
+      <div data-aos="fade-up" className="mt-20 md:mt-48 lg:mt-0">
         <h2 className="text-5xl font-bold mb-6">
           Queries that you have created
         </h2>
