@@ -44,7 +44,7 @@ const Queries = () => {
             />
           </div>
         </label>
-        <div className="flex justify-center space-x-4 mb-6">
+        <div className="flex flex-col md:flex-row justify-center gap-2 space-x-4 mb-6">
           <button
             className="btn btn-primary lg:hidden"
             onClick={() => handleGridChange("grid-cols-1")}
