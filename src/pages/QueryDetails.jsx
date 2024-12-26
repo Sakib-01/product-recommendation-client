@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
@@ -14,6 +14,7 @@ const QueryDetails = () => {
   const { id } = useParams();
   const [query, setQuery] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
+  const navigate = useNavigate();
 
   //   useEffect(() => {
   //     fetch(`${import.meta.env.VITE_API_URL}/query/${id}`)
@@ -102,13 +103,9 @@ const QueryDetails = () => {
     // Log to console for debugging
     console.table(newRecommend);
 
-    // Optionally clear the form after submission
-    // form.reset();
-
     try {
       await axiosSecure.post(`/add-recommendation`, newRecommend);
 
-      // Show success toast and navigate after the post is successful
       //   toast.success("Data added successfully");
       Swal.fire({
         title: "Success!",
@@ -117,7 +114,7 @@ const QueryDetails = () => {
         confirmButtonText: "Ok",
       });
       fetchRecommendationData();
-      //   navigate("/my-posted-jobs");
+      navigate("/myRecomendation");
     } catch (err) {
       console.log(err);
       toast.error(err.message || "Failed to add data");
