@@ -31,23 +31,23 @@ const Navbar = () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full z-20 bg-base-100 shadow-lg">
-      <div className="lg:w-11/12 mx-auto flex justify-between items-center py-4  ">
-        <div className="flex gap-2">
-          {/* Logo */}
-          <img className="w-14" src={logo} alt="" />
-          <Link to="/" className="flex items-center gap-2">
-            <h1 className="text-primary font-bold text-3xl ">ProRecco</h1>
+    <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Logo Section */}
+        <div className="flex items-center gap-4">
+          <img className="w-12" src={logo} alt="Logo" />
+          <Link to="/" className="text-2xl font-bold text-primary">
+            ProRecco
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6 text-neutral font-medium">
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex items-center gap-8 text-lg font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `cursor-pointer hover:text-primary ${
-                isActive ? "text-primary" : ""
+              `hover:text-primary transition ${
+                isActive ? "text-primary" : "text-gray-700"
               }`
             }
           >
@@ -56,8 +56,8 @@ const Navbar = () => {
           <NavLink
             to="/queries"
             className={({ isActive }) =>
-              `cursor-pointer hover:text-primary ${
-                isActive ? "text-primary" : ""
+              `hover:text-primary transition ${
+                isActive ? "text-primary" : "text-gray-700"
               }`
             }
           >
@@ -68,28 +68,18 @@ const Navbar = () => {
               <NavLink
                 to="/recommendationsForMe"
                 className={({ isActive }) =>
-                  `cursor-pointer hover:text-primary ${
-                    isActive ? "text-primary" : ""
+                  `hover:text-primary transition ${
+                    isActive ? "text-primary" : "text-gray-700"
                   }`
                 }
               >
-                Recommendations For Me
+                Recommendations
               </NavLink>
-              {/* <NavLink
-                to="/addQuery"
-                className={({ isActive }) =>
-                  `cursor-pointer hover:text-primary ${
-                    isActive ? "text-primary" : ""
-                  }`
-                }
-              >
-                Add Query
-              </NavLink> */}
               <NavLink
                 to="/myQuery"
                 className={({ isActive }) =>
-                  `cursor-pointer hover:text-primary ${
-                    isActive ? "text-primary" : ""
+                  `hover:text-primary transition ${
+                    isActive ? "text-primary" : "text-gray-700"
                   }`
                 }
               >
@@ -98,78 +88,67 @@ const Navbar = () => {
               <NavLink
                 to="/myRecomendation"
                 className={({ isActive }) =>
-                  `cursor-pointer hover:text-primary ${
-                    isActive ? "text-primary" : ""
+                  `hover:text-primary transition ${
+                    isActive ? "text-primary" : "text-gray-700"
                   }`
                 }
               >
-                My Recomendation
+                My Recommendation
               </NavLink>
             </>
           )}
         </ul>
 
-        {/* Authentication Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Authentication & Mobile Menu Button */}
+        <div className="flex items-center gap-4">
           {user ? (
-            <div className="flex items-center gap-4">
-              {/* User Profile */}
+            <div className="hidden md:flex items-center gap-4">
               <div className="avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    referrerPolicy="no-referrer"
-                    src={user?.photoURL || "https://via.placeholder.com/150"}
-                    alt="User"
-                    title={user?.displayName}
-                  />
-                </div>
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={user?.photoURL || "https://via.placeholder.com/150"}
+                  alt="User"
+                  title={user?.displayName}
+                />
               </div>
               <button
                 onClick={handleLogout}
-                className="btn btn-error text-white btn-sm"
+                className="btn btn-error btn-sm text-white"
               >
                 Logout
               </button>
             </div>
           ) : (
-            <>
+            <div className="hidden md:flex gap-4">
               <Link to="/login" className="btn btn-outline btn-primary btn-sm">
                 Login
               </Link>
               <Link to="/signup" className="btn btn-primary btn-sm text-white">
                 Sign Up
               </Link>
-            </>
+            </div>
           )}
+          <button
+            onClick={() => setShowMobileMenu(true)}
+            className="md:hidden text-primary"
+          >
+            <img src={menuIcon} alt="Menu Icon" className="w-8" />
+          </button>
         </div>
-
-        {/* Mobile Menu Icon */}
-        <button
-          onClick={() => setShowMobileMenu(true)}
-          className="md:hidden text-primary"
-        >
-          <img src={menuIcon} alt="Menu Icon" className="w-8" />
-        </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-base-200 z-30 transform transition-transform duration-300 ${
+        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ${
           showMobileMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close Button */}
-        <div className="flex justify-end p-6">
-          <button
-            onClick={() => setShowMobileMenu(false)}
-            className="text-red-500"
-          >
-            <img src={crossIcon} alt="Close Icon" className="w-6" />
+        <div className="flex justify-end p-4">
+          <button onClick={() => setShowMobileMenu(false)}>
+            <img src={crossIcon} alt="Close Menu" className="w-6" />
           </button>
         </div>
-
-        {/* Links */}
-        <ul className="flex flex-col items-center gap-6 mt-10 text-lg font-medium">
+        <ul className="flex flex-col items-center gap-6 mt-6 text-lg font-medium">
           <NavLink
             to="/"
             onClick={() => setShowMobileMenu(false)}
@@ -191,15 +170,8 @@ const Navbar = () => {
                 onClick={() => setShowMobileMenu(false)}
                 className="btn btn-primary btn-block"
               >
-                Recommendations for me
+                Recommendations
               </NavLink>
-              {/* <NavLink
-                to="/addQuery"
-                onClick={() => setShowMobileMenu(false)}
-                className="btn btn-primary btn-block"
-              >
-                Add Query
-              </NavLink> */}
               <NavLink
                 to="/myQuery"
                 onClick={() => setShowMobileMenu(false)}
@@ -212,7 +184,7 @@ const Navbar = () => {
                 onClick={() => setShowMobileMenu(false)}
                 className="btn btn-primary btn-block"
               >
-                My Recomendation
+                My Recommendation
               </NavLink>
             </>
           )}
@@ -237,7 +209,7 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 
