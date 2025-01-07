@@ -61,46 +61,14 @@ Make sure you have the following installed:
 - npm or yarn
 - MongoDB
 
-### Backend Setup
+### Frontend Setup
 
 1. Clone the repository:
    ```sh
    git clone  https://github.com/Sakib-01/product-recommendation-client
 )
-- [Features](#features)
+- [Features](#Key)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Technologies](#technologies)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [Technologies](#npm)
 
-## Demo
-
-Check out the live website: https://xcelliance.firebaseapp.com
-
-## Features
-
-- Latest tech news and articles
-- User authentication and profiles
-- Interactive UI with React
-- RESTful API with Node.js and Express
-- MongoDB for data storage
-
-## Installation
-
-To get a local copy up and running, follow these steps:
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js
-- npm or yarn
-- MongoDB
-
-### Backend Setup
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/Sakib-01/product-recommendation-client
