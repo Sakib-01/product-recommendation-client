@@ -65,7 +65,7 @@ Make sure you have the following installed:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/anisamim94/xcelliance.git
+   git clone  https://github.com/Sakib-01/product-recommendation-client
 )
 - [Features](#features)
 - [Installation](#installation)
@@ -103,4 +103,4 @@ Make sure you have the following installed:
 
 1. Clone the repository:
    ```sh
-   git clone 
+   git clone https://github.com/Sakib-01/product-recommendation-client
