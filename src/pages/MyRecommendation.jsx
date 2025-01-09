@@ -96,7 +96,7 @@ const MyRecommendation = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-10">
       <div data-aos="fade-up" className="text-center mb-6">
         <h2 className="text-2xl font-semibold text-gray-800">
           My Recommendations{" "}

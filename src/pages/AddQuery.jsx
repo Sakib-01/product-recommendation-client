@@ -90,7 +90,7 @@ const AddQuery = () => {
   return (
     <div
       data-aos="zoom-in"
-      className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6"
+      className="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6 lg:pt-10"
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
         Add Product Query

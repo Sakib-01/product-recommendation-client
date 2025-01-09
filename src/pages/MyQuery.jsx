@@ -86,7 +86,7 @@ const MyQuery = () => {
   return (
     <div className="container mx-auto flex flex-col">
       {/* Hero Section */}
-      <div data-aos="fade-up" className="hero bg-base-200 h-[450px] my-10">
+      <div data-aos="fade-up" className="hero bg-base-200 h-[450px] my-6">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <Lottie animationData={queryLottie} className="w-1/2" />
           <div>
@@ -135,22 +135,21 @@ const MyQuery = () => {
               </div>
 
               {/* Product and Query Information */}
-              <div className="flex-grow ml-6 space-y-2">
-                {/* Product Name and Brand */}
+              <div className="flex flex-col flex-grow ml-4 space-y-2">
                 <h3 className="text-lg font-bold">{q.productName}</h3>
-                <p className="text-sm text-gray-600">{q.queryTitle}</p>
+                <p className="text-sm text-gray-600">{q.productBrand}</p>
               </div>
+
               {/* Brand and Date Information */}
-              <div className="hidden md:block flex-grow ml-6 space-y-2">
-                {/* Product Name and Brand */}
-                <h3 className="text-lg font-bold">{q.productBrand}</h3>
+              <div className="hidden md:flex flex-col flex-grow ml-4 space-y-2 ">
+                <h3 className="text-lg font-bold">{q.queryTitle}</h3>
                 <p className="text-sm text-gray-600">
-                  Posted Date :{format(new Date(q.currentDateTime), "P")}
+                  Posted Date: {format(new Date(q.currentDateTime), "P")}
                 </p>
               </div>
 
               {/* Recommendation Count */}
-              <div className="text-center">
+              <div className="text-center flex-shrink-0">
                 <p className="text-gray-600 text-sm">
                   <FaRegComments />
                 </p>
@@ -158,7 +157,7 @@ const MyQuery = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col md:flex-row items-end gap-1  space-x-4 ml-6">
+              <div className="flex gap-2 ml-4 flex-shrink-0">
                 <Link to={`/queryDetails/${q._id}`}>
                   <button className="btn btn-primary btn-sm">
                     <GrView />
