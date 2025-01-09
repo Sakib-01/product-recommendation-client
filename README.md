@@ -1,11 +1,4 @@
-<!-- # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh -->
 
 # ProRecco
 
@@ -55,3 +48,27 @@ The Product Review project allows users to submit, view, and interact with produ
 - `dotenv`: For environment variables to manage sensitive information.
 - `cors`: For handling cross-origin requests between frontend and backend.
 - `react-toastify`: For showing toast notifications.
+
+  ## Installation
+
+To get a local copy up and running, follow these steps:
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js
+- npm or yarn
+- MongoDB
+
+### Frontend Setup
+
+1. Clone the repository:
+   ```sh
+   git clone  https://github.com/Sakib-01/product-recommendation-client
+)
+- [Features](#Key)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#npm)
+
