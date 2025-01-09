@@ -1,10 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProductCard = ({ query }) => {
   const location = useLocation();
   const {
+    _id,
     productName,
     productBrand,
     productImageUrl,
@@ -17,7 +18,7 @@ const ProductCard = ({ query }) => {
     userImage,
   } = query;
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <Link to={`/queryDetails/${_id}`} className="card bg-base-100 shadow-xl">
       <figure>
         <img className="h-52" src={productImageUrl} alt={productName} />
       </figure>
@@ -33,7 +34,7 @@ const ProductCard = ({ query }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

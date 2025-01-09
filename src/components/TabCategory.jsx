@@ -56,12 +56,12 @@ const TabCategory = () => {
 
         {["All", ...uniqueBrands].map((brand, index) => (
           <TabPanel key={index}>
-            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 ">
+            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-3 lg:grid-cols-4 ">
               {queries
                 .filter(
                   (query) => brand === "All" || query.productBrand === brand
                 )
-                .slice(0, 6)
+                .slice(0, 8)
                 .map((query) => (
                   <ProductCard key={query._id} query={query}></ProductCard>
                 ))}

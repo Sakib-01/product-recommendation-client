@@ -24,27 +24,27 @@ const Home = () => {
   return (
     <div>
       {/* Banner */}
-      <div data-aos="fade-up">
+      <div id="banner" data-aos="fade-up">
         <Banner />
       </div>
 
       {/* Tab Category */}
-      <div className="bg-orange-50" data-aos="fade-up">
+      <div id="category" className="bg-orange-50" data-aos="fade-up">
         <TabCategory />
       </div>
 
       {/* Blogs */}
-      <div className="bg-orange-50" data-aos="fade-right">
+      <div id="blogs" className="bg-orange-50" data-aos="fade-right">
         <Blogs />
       </div>
 
       {/* Reviews */}
-      <div className="bg-slate-50" data-aos="fade-left">
+      <div id="review" className="bg-slate-50" data-aos="fade-left">
         <Reviews />
       </div>
 
       {/* Newsletter */}
-      <div data-aos="zoom-in">
+      <div id="newsLetter" data-aos="zoom-in">
         <Newsletter />
       </div>
     </div>

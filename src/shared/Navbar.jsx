@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 import menuIcon from "../assets/menu_icon.png";
@@ -9,6 +9,8 @@ import logo from "../assets/img/logo.jpg";
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (showMobileMenu) {
@@ -30,9 +32,28 @@ const Navbar = () => {
     }
   };
 
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleLinkClick = (e, target) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      // If already on the homepage, scroll to the target section
+      scrollToSection(target);
+    } else {
+      // Navigate to the homepage and scroll to the target section
+      navigate("/", { replace: true });
+      setTimeout(() => scrollToSection(target), 100);
+    }
+  };
+
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="w-11/12 mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo Section */}
         <div className="flex items-center gap-4">
           <img className="w-12" src={logo} alt="Logo" />
@@ -63,6 +84,39 @@ const Navbar = () => {
           >
             Queries
           </NavLink>
+          <Link
+            to="/"
+            onClick={(e) => handleLinkClick(e, "category")}
+            className={({ isActive }) =>
+              `hover:text-primary transition ${
+                isActive ? "text-primary" : "text-gray-700"
+              }`
+            }
+          >
+            Category
+          </Link>
+          <Link
+            to="/"
+            onClick={(e) => handleLinkClick(e, "blogs")}
+            className={({ isActive }) =>
+              `hover:text-primary transition ${
+                isActive ? "text-primary" : "text-gray-700"
+              }`
+            }
+          >
+            Blogs
+          </Link>
+          <Link
+            to="/"
+            onClick={(e) => handleLinkClick(e, "review")}
+            className={({ isActive }) =>
+              `hover:text-primary transition ${
+                isActive ? "text-primary" : "text-gray-700"
+              }`
+            }
+          >
+            Review
+          </Link>
           {user && (
             <>
               <NavLink
@@ -83,7 +137,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                My Query
+                My <br /> Query
               </NavLink>
               <NavLink
                 to="/myRecomendation"
@@ -93,7 +147,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                My Recommendation
+                My <br /> Recommendation
               </NavLink>
             </>
           )}
@@ -103,9 +157,9 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           {user ? (
             <div className="hidden md:flex items-center gap-4">
-              <div className="avatar">
+              <div className="">
                 <img
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10  rounded-full"
                   src={user?.photoURL || "https://via.placeholder.com/150"}
                   alt="User"
                   title={user?.displayName}
@@ -140,7 +194,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ${
-          showMobileMenu ? "translate-x-0" : "translate-x-full"
+          showMobileMenu ? "translate-y-0" : "translate-y-full"
         }`}
       >
         <div className="flex justify-end p-4">
