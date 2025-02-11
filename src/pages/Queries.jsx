@@ -4,6 +4,9 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { AiOutlineColumnWidth } from "react-icons/ai";
+import { FaBars, FaTh, FaThLarge } from "react-icons/fa";
+import { TbColumns1, TbColumns2, TbColumns3 } from "react-icons/tb";
 
 const Queries = () => {
   const [queries, setQueries] = useState([]);
@@ -63,28 +66,34 @@ const Queries = () => {
             className="btn btn-primary lg:hidden"
             onClick={() => handleGridChange("grid-cols-1")}
           >
-            1 Column
+            <TbColumns1 className="text-xl" />
           </button>
+
+          {/* 2 Columns - Always visible */}
           <button
             data-aos="fade-up"
             className="btn btn-secondary"
             onClick={() => handleGridChange("grid-cols-2")}
           >
-            2 Columns
+            <TbColumns2 className="text-xl" />
           </button>
+
+          {/* 3 Columns - Hidden on small screens */}
           <button
             data-aos="fade-up"
-            className=" hidden md:block btn btn-accent"
+            className="hidden md:block btn btn-accent"
             onClick={() => handleGridChange("grid-cols-3")}
           >
-            3 Columns
+            <TbColumns3 className="text-xl" />
           </button>
+
+          {/* 4 Columns - Hidden on small screens */}
           <button
             data-aos="fade-up"
-            className=" hidden md:block btn btn-primary"
+            className="hidden md:block btn btn-primary"
             onClick={() => handleGridChange("grid-cols-4")}
           >
-            4 Columns
+            <FaThLarge className="text-xl" />
           </button>
         </div>
       </div>
