@@ -54,16 +54,31 @@ const TabCategory = () => {
           </TabList>
         </div> */}
 
-        <div className="flex items-center justify-center mb-6">
-          <TabList
-            className="flex items-center justify-center space-x-6 p-4 bg-gray-100 rounded-xl shadow-md 
-                      overflow-x-auto whitespace-nowrap max-w-full sm:space-x-4 sm:p-3 sm:gap-x-3"
-          >
+        {/* <div className="flex items-center justify-center mb-6 border-2 overflow-x-auto w-full max-w-full">
+          {" "}
+          <TabList className="flex items-center justify-center space-x-6 p-4 bg-gray-100 rounded-xl ">
             {["All", ...uniqueBrands].map((brand, index) => (
               <Tab
                 key={index}
                 className="px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 ease-in-out rounded-lg cursor-pointer 
                    hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {brand}
+              </Tab>
+            ))}
+          </TabList>
+        </div> */}
+
+        <div className="flex items-center justify-center mb-6  w-full">
+          <TabList
+            className="grid grid-cols-3 gap-3 p-4 bg-gray-100 rounded-xl shadow-md 
+               sm:grid-cols-5 lg:grid-cols-6"
+          >
+            {["All", ...uniqueBrands].map((brand, index) => (
+              <Tab
+                key={index}
+                className="px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 ease-in-out rounded-lg cursor-pointer 
+                    hover:text-blue-500 hover:underline decoration-2 underline-offset-4 focus:outline-none   text-center"
               >
                 {brand}
               </Tab>
