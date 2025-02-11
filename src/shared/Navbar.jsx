@@ -63,7 +63,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-lg font-medium">
+        <ul className="hidden lg:flex items-center gap-8 text-lg font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -184,7 +184,7 @@ const Navbar = () => {
           )}
           <button
             onClick={() => setShowMobileMenu(true)}
-            className="md:hidden text-primary"
+            className="lg:hidden text-primary"
           >
             <img src={menuIcon} alt="Menu Icon" className="w-8" />
           </button>
